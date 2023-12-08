@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonial Slider</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      color: #000;
+      font-family: 'Nunito', sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    .testimonial {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 5rem;
+    }
+
+    h1 {
+      margin: 20px 0;
+    }
+
+    .line {
+      height: 2px;
+      width: 6rem;
+      background-color: #e26c4f;
+      margin-bottom: calc(3rem + 2vmin);
+    }
+
+    .arrow-wrapper {
+      position: relative;
+      width: 70%;
+      border-radius: 2rem;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      overflow: hidden;
+      place-items: center;
+    }
+
+    .review-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: calc(2rem + 1vmin);
+      width: 100%;
+        background-color: whitesmoke;
+    }
+
+    #imgBox {
+      border-radius: 50%;
+      width: calc(6rem + 4vmin);
+      height: calc(6rem + 4vmin);
+      position: relative;
+      box-shadow: 5px -3px #e26c4f;
+      background-size: cover;
+      margin-bottom: calc(0.7rem + 0.5vmin);
+    }
+
+    #name {
+      margin-bottom: calc(0.7rem + 0.5vmin);
+      font-size: calc(1rem + 0.5vmin);
+      letter-spacing: calc(0.1rem + 0.1vmin);
+      font-weight: bold;
+    }
+
+    #profession {
+      font-size: calc(0.8rem + 0.3vmin);
+      margin-bottom: calc(0.7rem + 0.5vmin);
+OBOBOB      color: #e26c4f;
+    }
+
+    #description {
+      font-size: calc(0.8rem + 0.3vmin);
+      width: 70%;
+      max-width: 40rem;
+      text-align: center;
+      margin-bottom: calc(1.4rem + 1vmin);
+      color: rgb(92, 92, 92);
+      line-height: 2rem;
+    }
+
+    .arrow {
+      width: calc(1.4rem + 0.6vmin);
+      height: calc(1.4rem + 0.6vmin);
+      border: solid #e26c4f;
+      border-width: 0 calc(0.5rem + 0.2vmin) calc(0.5rem + 0.2vmin) 0;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .arrow:hover {
+      transition: 0.3s;
+      transform: scale(1.15);
+    }
+
+    .left-arrow-wrap {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: rotate(135deg);
+    }
+
+    .right-arrow-wrap {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: rotate(-45deg);
+    }
+
+    @media screen and (max-width: 900px) {
+      .testimonial {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body style="background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1613629632_32-p-fon-dlya-prezentatsii-puteshestvie-38.png');">
+  <div class="testimonial">
+    <h1>Наши отзывы</h1>
+    <div class="line"></div>
+    <!-- arrow wrapper contains the review and the arrows -->
+    <div class="arrow-wrapper">
+      <!-- review section -->
+      <div id="reviewWrap" class="review-wrap">
+        <div id="imgBox"></div>
+        <div id="name"></div>
+        <div id="profession"></div>
+        <div id="description"></div>
+      </div>
+      <!-- left arrow -->
+      <div class="left-arrow-wrap">
+        <div class="arrow"></div>
+      </div>
+      <!-- right arrow -->
+      <div class="right-arrow-wrap">
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const reviewWrap = document.getElementById("reviewWrap");
+    const leftArrow = document.querySelector(".left-arrow-wrap .arrow");
+    const rightArrow = document.querySelector(".right-arrow-wrap .arrow");
+    const imgBox = document.getElementById("imgBox");
+    const name = document.getElementById("name");
+    const profession = document.getElementById("profession");
+    const description = document.getElementById("description");
+
+    let people = [{
+        photo: 'url("https://peterburg-news.ru/wp-content/uploads/2023/10/1686968612_happylove-top-p-velikaya-kitaiskaya-stena-kitai-instagram-63.jpg")',
+        name: "Наталья Серова",
+        profession: "Китай",
+        description: "Спасибо за путешествие. Ездили в Китай осенью 2023. Было очень любопытно и удивительно. Каждый вечер казалось, что впечатлений ярче уже не будет. Но на следующий день с радостью понимала, что снова ошиблась. Большинство проблем и вопросов, таинственным образом, оперативно разрешались. Жаль, что все хорошее быстро заканчивается, хочется еще."
+      },
+      {
+        photo: "url('https://static.tildacdn.com/tild3962-6263-4537-a131-376438303462/--72.jpg')",
+        name: "Софья Алексеева",
+        profession: "Киргизия",
+        description: "В каждом путешествие есть своё удовольствие. В этом по Киргизии было много аутентичной природной нетронутости, много простора для взгляда, мало людей. Наш маршрут был не истоптан туристами, насыщен активностями, и не перегружен историческими фактами. Очень благодарна, что взяли меня новичка в свою команду «бывалых»."
+      },
+      {
+        photo: "url('https://icdn.bolshayastrana.com/1200x00/c2/11/c211f2827e2cfdd0202a2fbac7bcdc54.jpeg')",
+        name: "Елена Токмакова",
+        profession: "Мурманск",
+        description: "Что сказать, все сошлось! Снег и мороз, которого нам так не хватало в эту зиму, тепло, забота наших организаторов и масса впечатлений, которые накрывают тебя постепенно и уже не отпускают! И вершина айсберга — СЕВЕРНОЕ СИЯНИЕ! То, ради чего ехали в Мурманск, на Кольский полуостров, а в результате получили гораздо больше! Готовы к новым подвигам с «Russian Travel»!"
+      },
+      {
+        photo: "url('https://territoria22.ru/wp-content/uploads/2021/04/туризм-1.jpg')",
+        name: "Ангелина Прокшина",
+        profession: "Алтай",
+        description: "Благодарю всю команду «Russian Travel» за открытие чудесного Алтая для меня! Огромная благодарность нашему гиду за четкую организацию, за терпение и гибкость, за горячий кофе на берегах и утёсах, за песни под гитару и великолепные фотографии! Водителю Павлу отдельная благодарность за 2315 км дорог и бездорожья, за наши чемоданы и интересные истории)"
+      }
+    ];
+
+    // set the first person
+    imgBox.style.backgroundImage = people[0].photo;
+    name.innerText = people[0].name;
+    profession.innerText = people[0].profession;
+    description.innerText = people[0].description;
+    let currentPerson = 0;
+
+    //Select the side where you want to slide
+    function slide(side, personNumber) {
+      let reviewWrapWidth = reviewWrap.offsetWidth + "px";
+      let descriptionHeight = description.offsetHeight + "px";
+      //(+ or -)
+      let side1symbol = side === "left" ? "" : "-";
+      let side2symbol = side === "left" ? "-" : "";
+
+      setTimeout(() => {
+        imgBox.style.backgroundImage = people[personNumber].photo;
+      }, 0);
+      setTimeout(() => {
+        description.style.height = descriptionHeight;
+      }, 100);
+      setTimeout(() => {
+        name.innerText = people[personNumber].name;
+      }, 200);
+      setTimeout(() => {
+        profession.innerText = people[personNumber].profession;
+      }, 300);
+      setTimeout(() => {
+        description.innerText = people[personNumber].description;
+      }, 400);
+    }
+
+    function setNextCardLeft() {
+      if (currentPerson === 3) {
+        currentPerson = 0;
+        slide("left", currentPerson);
+      } else {
+        currentPerson++;
+      }
+
+      slide("left", currentPerson);
+    }
+
+    function setNextCardRight() {
+      if (currentPerson === 0) {
+        currentPerson = 3;
+        slide("right", currentPerson);
+      } else {
+        currentPerson--;
+      }
+
+      slide("right", currentPerson);
+    }
+
+    leftArrow.addEventListener("click", setNextCardLeft);
+    rightArrow.addEventListener("click", setNextCardRight);
+  </script>
+</body>
+
+</html>
