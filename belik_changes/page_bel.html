@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>RussianTravel</title>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:300i,400&display=swap" rel="stylesheet">
+    <meta name="description" content="Тестовая страничка HTML">
+    <meta name="keywords" content="HTML, Test, Test page">
+    <meta name="viewport" content="width=1200">
+    <script src="https://kit.fontawesome.com/0770e65d47.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+                /* Отступ */
+                margin: 0;
+                /* Шрифт */
+                font-family: 'Montserrat', sans-serif;
+                font-size: 15px;
+                line-height: 1.6;
+                color: #333
+            }
+
+            *,
+            *:before,
+            *:after {
+                box-sizing: border-box;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            h7 {
+                margin: 0;
+            }
+
+            hr {
+                display: block;
+                width: 100%;
+                height: 1px;
+                border: 0;
+                background-color: #fa5050;
+                margin: 40px 0;
+            }
+
+
+            /* Content */
+
+            .content {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+
+            /* Фоновая картинка */
+
+            .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                /* Вытянуть на всю высоту(в данном случае т.к можно еще и на ширину) */
+                height: 100vh;
+                background: url(../images/intro2.jpg) center no-repeat;
+                /* Чтобы занимало весь экран */
+                background-size: cover;
+            }
+
+
+            /* Текст на картинке */
+
+            .intro__inner {
+                color: #000;
+                width: 100%;
+                max-width: 1000px;
+                /* Вырвнивание текта по центру(в данном случае) */
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            .intro__title {
+                font-size: 150px;
+                font-weight: 700;
+                text-transform: uppercase;
+                line-height: 1;
+            }
+
+            .intro__title:after {
+                content: "";
+                display: block;
+                width: 60px;
+                height: 3px;
+                background-color: #767474;
+                margin: 60px auto;
+            }
+
+            .intro__suptitle {
+                margin-bottom: 15px;
+                font-size: 72px;
+                color: #000;
+                font-family: 'Kaushan Script', cursive;
+            }
+
+
+            /* Шапка */
+
+            .header {
+                /* Отсуп относительно верха(в данном случае) */
+                padding-top: 30px;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+            }
+
+            .header__inner {
+                display: flex;
+                /* Выравнивание */
+                justify-content: space-between;
+                /* Отступ от верха */
+                align-items: center;
+            }
+
+            .header__logo {
+                font-size: 30px;
+                font-weight: 700;
+                color: #000;
+            }
+
+
+            /* Кпопки для навигации */
+
+            .nav {
+                font-size: 15px;
+                /* Текст большими буквами */
+                text-transform: uppercase;
+            }
+
+            .nav__link {
+                color: #000;
+                /* Без подчеркивания */
+                text-decoration: none;
+                /* Плавное появление */
+                transition: color .2s linear;
+                /* Выровнять в строку */
+                vertical-align: top;
+                margin: 0 12px;
+                /* Позиция сменяема */
+                position: relative;
+            }
+
+
+            /* Нижняя черта при наведении(псевдоэлемент) */
+
+            .nav__link:after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 3px;
+                /* Видимость */
+                opacity: 0;
+                background: #fa5050;
+                /* Абсолютная позиция */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1;
+                transition: opacity .2s linear;
+            }
+
+
+            /* При наведение загорается... */
+
+            .nav__link:hover {
+                color: #fa5050;
+            }
+
+            .nav__link:hover:after,
+            .nav__link.active:after {
+                opacity: 1;
+            }
+
+            .nav__link.active {
+                color: #fa5050;
+            }
+
+
+            /* Кнопка */
+
+            .btn {
+                display: inline-block;
+                vertical-align: top;
+                border: 3px solid #767474;
+                /* Отступ */
+                padding: /* Сверху/снизу */
+                8px/* Справа/слева */
+                30px;
+                color: #000;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: bold;
+                transition: background .2s linear, color .2s linear;
+            }
+
+            .btn:hover {
+                background-color: #767474;
+                color: #fa5050;
+            }
+
+
+            /* Слайдер(без java не работает) */
+
+            .slider {
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+            }
+
+            .slider__inner {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .slider__item {
+                width: 22%;
+                padding: 20px 0;
+                position: relative;
+                opacity: .7;
+                border-top: 3px solid #767474;
+                font-size: 18px;
+                color: #000;
+                text-transform: uppercase;
+            }
+
+            .slider__item.active {
+                opacity: 1;
+            }
+
+            .slider__item.active:before {
+                content: "";
+                display: block;
+                width: 70px;
+                height: 3px;
+                position: absolute;
+                top: -3px;
+                left: 0;
+                z-index: 1;
+                background-color: #000;
+            }
+
+            .slider__num {
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+
+            /* Секция */
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section--devices {
+                margin-bottom: 40px;
+                padding-bottom: 0;
+                background: url("../images/background2.jpg") center no-repeat;
+                background-size: cover;
+            }
+
+            .section--gray {
+                background-color: #f8f8f8;
+            }
+
+
+            .section__header {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto 50px;
+                text-align: center;
+            }
+
+            .section__suptitle {
+                font-size: 24px;
+                font-family: 'Kaushan Script', cursive;
+                color: #000;
+            }
+
+            .section__title {
+                font-size: 30px;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: #000;
+            }
+
+            .section__title:after {
+                content: "";
+                display: block;
+                width: 60px;
+                height: 3px;
+                background-color: #fa5050;
+                margin: 30px auto;
+            }
+
+            .section__text {
+                font-size: 15;
+                text-align: center;
+                color: #000;
+            }
+
+
+            /* Проекты */
+
+            .card {
+                margin-top: 80px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .card__item {
+                width: 380px;
+            }
+
+            .card__inner {
+                background-color: #faafaf;
+                position: relative;
+            }
+
+            .card__item:hover .card__image {
+                transform: translate3d(-10px, -10px, 0);
+            }
+
+            .card__item:hover .card__text {
+                opacity: 1;
+            }
+
+            .card__item:hover .card__image img {
+                opacity: .1;
+            }
+
+            .card__image {
+                background: linear-gradient(to bottom, #767474, #fa5050);
+                transition: transform .2s linear;
+            }
+
+            .card__image img {
+                display: block;
+                transition: opacity .2s linear;
+            }
+
+            .card__text {
+                width: 100%;
+                font-size: 15px;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: #767474;
+                text-align: center;
+                position: absolute;
+                opacity: 0;
+                top: 50%;
+                left: 0;
+                z-index: 2;
+                transform: translate3d(0, -50%, 0);
+                transition: opacity .2s linear;
+            }
+
+            .card__info {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .card__name {
+                margin-bottom: 5px;
+                color: #000;
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+
+            .card__prof {
+                color: #999;
+                font-size: 15px;
+                font-style: italic;
+                font-weight: 300;
+            }
+
+
+            /* Типо статистика */
+
+            .statistics {
+                background-color: #faafaf;
+            }
+
+            .stat {
+                display: flex;
+            }
+
+            .stat__item {
+                flex: 1 1 0;
+                padding: 70px 25px;
+                border-left: 1px solid #ffcbc8;
+                text-align: center;
+            }
+
+            .stat__item:last-child {
+                border-right: 1px solid #ffcbc8;
+            }
+
+            .stat__num {
+                font-size: 72px;
+                font-weight: 700;
+                color: #767474;
+                line-height: 1;
+            }
+
+            .stat__text {
+                color: #767474;
+                font-size: 14px;
+                font-weight: 400;
+                text-transform: none;
+            }
+
+
+            /* Сервисы */
+
+            .services {
+                display: flex;
+            }
+
+            .service__item {
+                flex: 1 1 0;
+                padding-left: 85px;
+                padding-right: 35px;
+                position: relative;
+                text-align: left;
+            }
+
+            .service__icon {
+                position: absolute;
+                top: 0;
+                left: 28px;
+                z-index: 1;
+            }
+
+            .service__title {
+                margin-bottom: 10px;
+                font-size: 14px;
+                text-transform: uppercase;
+                color: #000;
+                font-weight: bold;
+            }
+
+            .service__text {
+                font-size: 15px;
+                color: #000;
+            }
+        .images {
+            justify-content:center;
+            text-align: center;
+            background-color: #767474; 
+            padding:10px;
+        }
+
+    </style>
+    </head>
+<body>
+    <header class="header">
+        <div class="content">
+            <div class="header__inner">
+                <div class="header__logo">Russian Travel</div>
+                <nav class="nav"> <a class="nav__link active" href="page_bel.html">О нас</a> <a class="nav__link" href="project.html">Отзывы</a> <a class="nav__link" href="#">Контакты</a></nav>
+            </div>
+        </div>
+    </header>
+    <div class="intro">
+        <div class="content">
+            <div class="intro__inner">
+                <h2 class="intro__suptitle">let's travel</h2>
+                <h1 class="intro__title">Together!</h1> </div>
+        </div>
+    </div>
+    <div>
+        <div class="statistics">
+            <div class="content">
+                <div class="stat">
+                    <div class="stat__item">
+                        <div class="stat__num">легко</div>
+                        <div class="stat__text">С нами путешествовать легко, потому что всю организацию вашего отдыха мы берем на себя.</div>
+                    </div>
+                    <div class="stat__item">
+                        <div class="stat__num">весело</div>
+                        <div class="stat__text">Мы подберем насущенную программу исходя из исключительно ваших интересов.</div>
+                    </div>
+                    <div class="stat__item">
+                        <div class="stat__num">новое</div>
+                        <div class="stat__text">С нами вы откроете новые уголки нашей страны и увидете знакомые места с другого ракурса.</div>
+                    </div>
+                    <div class="stat__item">
+                        <div class="stat__num">недорого</div>
+                        <div class="stat__text">Мы поможем вам сэкономить на проживании, транспорте и питании, ведь всё это уже включено в стоимость вашего тура!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="content">
+            <div class="section__header">
+                <h3 class="section__suptitle">Hope you enjoy</h3>
+                <h2 class="section__title">Travelling with us</h2>
+            <div class="services">
+                <div class="service__item">
+                    <img class="service__icon" src="assets/images/3d.png" alt="">
+                    <div class="service__title">Калининградская область</div>
+                    <div class="service__text">Калининградская область понравится любителям красивой природы, пляжного и экскурсионного отдыха. В здешних городках много старинных архитектурных достопримечательностей, связанных с европейским прошлым. В самом Калининграде большая часть исторической застройки была разрушена во время войны, но сохранился, например, Кёнигсбергский собор на острове Иммануила Канта. Летом оживают курортные города на побережье — Светлогорск и Зеленоградск. Немного западнее находится поселок Янтарный. Он славится широким песчаным пляжем, где попадаются кусочки янтаря.</div>
+                </div>
+                <div class="service__item">
+                    <img class="service__icon" src="assets/images/graf.png" alt="">
+                    <div class="service__title">Кольский полуостров</div>
+                    <div class="service__text">Это лучший вариант, куда можно поехать в России для знакомства с Крайним Севером. Температуры здесь более комфортные, чем на тех же широтах восточнее, а вероятность увидеть северное сияние так же высока. Ради этого необыкновенного явления туристы приезжают на Кольский полуостров из разных уголков России и даже из других стран. Многие отели, туроператоры и частные гиды предлагают помощь в охоте за чудесными огнями в ночном небе. Если вы хотите увидеть северное сияние, рекомендуем взять отпуск осенью, зимой или в начале весны и остановиться вдали от городов.</div>
+                </div>
+                <div class="service__item">
+                    <img class="service__icon" src="assets/images/monitor.png" alt="">
+                    <div class="service__title">Кавказ</div>
+                    <div class="service__text">Одно из наиболее очевидных направлений, куда поехать в отпуск в России, — это прекрасный Кавказ. Этот регион предлагает самые разные виды отдыха. Можно лениво загорать на морском пляже или сплавиться по бурной горной речке, посвятить отпуск дегустации местных блюд или покорить горную вершину в национальном парке. Кавказ — обширная территория, и везде есть что-то интересное.</div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="services">
+                <div class="service__item">
+                    <img class="service__icon" src="assets/images/text.png" alt="">
+                    <div class="service__title">Алтай</div>
+                    <div class="service__text">Есть еще одно направление, куда можно поехать отдыхать в России любителям гор и активного отдыха. Это Алтай, который прекрасен в любое время года. Весной здешние склоны покрываются ярким сиренево-розовым ковром маральника, сравнимым по красоте с цветущей сакурой. Летом в горах можно хорошо загореть — не хуже, чем на южных курортах. В первой половине осени леса окрашиваются в желтые и красные цвета, которые выглядят особенно эффектно на фоне синих рек и озер. А со второй половины осени начинается длинный горнолыжный сезон.</div>
+                </div>
+                <div class="service__item">
+                    <img class="service__icon" src="assets/images/home.png" alt="">
+                    <div class="service__title">Байкал</div>
+                    <div class="service__text">Если есть возможность побывать здесь, ею обязательно нужно воспользоваться. Как и на Алтай, на крупнейшее в мире озеро можно ехать в любой сезон. К середине лета вода прогревается достаточно, чтобы купаться, а загорать можно и раньше. При этом изнуряющей жары здесь нет. Более прохладные весна и осень хороши для треккинга и экскурсий к природным достопримечательностям. Зимний Байкал, покрытый толстым прозрачным льдом, — это бескрайний каток, где хватит места для всех любителей коньков и санок.</div>
+                </div>
+                <div class="service__item">
+                    <img class="service__icon" src="assets/images/screen.png" alt="">
+                    <div class="service__title">Камчатка</div>
+                    <div class="service__text">Природа Камчатского края настолько удивительна и незабываема, что привлекает путешественников и фотографов из разных стран. Добраться до этого региона непросто, но в этом есть и преимущество. Благодаря удаленности от густонаселенных районов, ландшафты Камчатки остаются дикими и первозданными. Здесь можно увидеть действующие вулканы, гейзеры, термальные источники, чистые горные речки, вулканический песок и много других чудес. </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <div class="images">
+        <img src="https://icdn.bolshayastrana.com/940x00/be/cc/becc4b6f6fbae39fb6271deafa72aaea.jpeg">
+        <img src="https://icdn.bolshayastrana.com/940x00/c3/d6/c3d61ee0aa3dcc6ed200e4f92631a460.jpeg">
+        <img src="https://icdn.bolshayastrana.com/940x00/2b/3a/2b3aa1cd0a0e1466f49fe80cb858515a.jpeg">
+    </div>
+</body>
+</html>
